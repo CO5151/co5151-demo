@@ -12,11 +12,11 @@
 This repository hosts the live interactive web demo comparing **3 Agent Architectures** applied to the Vietnamese Law Graph compliance problem (LegalPilot-VN):
 
 1. **Deterministic Workflow**:
-   - Fixed sequential pipeline ($760$ tokens, $1.0\times$ cost, rigid branching).
+   - Fixed sequential pipeline ($969$ tokens, $1.0\times$ cost, latency: $4,570$ ms, fails on temporal validity traps).
 2. **Monolithic ReAct Agent**:
-   - Unconstrained single-context loop with massive prompt bloat ($8,950$ tokens, $11.8\times$ cost, tool loops).
-3. **Orchestrator-Workers with Checkpointing & Differential Rollback**:
-   - Subgoal decomposition with isolated worker contexts, deterministic external verification oracle, and SQLite state checkpointing ($2,410$ tokens, $3.2\times$ cost).
+   - Unconstrained single-context loop with prompt bloat ($6,351$ tokens, $6.5\times$ cost, latency: $7,096$ ms, tool loops over Qdrant & Neo4j).
+3. **Orchestrator-Workers (Google ADK & LangGraph)**:
+   - Subgoal decomposition with isolated worker contexts, deterministic Neo4j/VBPL Claim Auditor oracle, and SQLite state checkpointing ($2,580$ tokens, $2.6\times$ cost, latency: $8,856$ ms, saves $59.4\%$ tokens vs ReAct).
 
 ---
 
